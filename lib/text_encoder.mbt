@@ -1,5 +1,3 @@
-
-
 pub fn encodeUTF8ToString(str : String) -> String {
   let mut utf8Str = ""
   for i = 0; i < str.length(); i = i + 1 {
@@ -8,19 +6,12 @@ pub fn encodeUTF8ToString(str : String) -> String {
       utf8Str += str[i].to_string()
     } else if charCode < 0x800 {
       utf8Str += fromCharCode(
-        [
-          (0xc0).lor(
-            charCode.asr(6),
-          ),
-          (0x80).lor(charCode.land(0x3f)),
-        ],
+        [(0xc0).lor(charCode.asr(6)), (0x80).lor(charCode.land(0x3f))],
       )
     } else if charCode < 0xd800 || charCode >= 0xe000 {
       utf8Str += fromCharCode(
         [
-          (0xe0).lor(
-            charCode.asr(12),
-          ),
+          (0xe0).lor(charCode.asr(12)),
           (0x80).lor(charCode.asr(6).land(0x3f)),
           (0x80).lor(charCode.land(0x3f)),
         ],
@@ -32,9 +23,7 @@ pub fn encodeUTF8ToString(str : String) -> String {
       let codePoint = (surrogate1 - 0xd800) * 0x400 + (surrogate2 - 0xdc00) + 0x10000
       utf8Str += fromCharCode(
         [
-          (0xf0).lor(
-            codePoint.asr(18).land(0x3f),
-          ),
+          (0xf0).lor(codePoint.asr(18).land(0x3f)),
           (0x80).lor(codePoint.asr(12).land(0x3f)),
           (0x80).lor(codePoint.asr(6).land(0x3f)),
           (0x80).lor(codePoint.land(0x3f)),
@@ -49,10 +38,10 @@ pub struct TextEncoder {}
 
 pub fn TextEncoder::encode(str : String) -> Array[Int] {
   // 将字符串转换为 UTF-8 编码的字符数组
-  let mut encodedList : List[Int] = List::Nil
+  let encodedList : Array[Int] = []
   let utf8Array = encodeUTF8ToString(str)
   for i = 0; i < utf8Array.length(); i = i + 1 {
-    encodedList = Cons(utf8Array[i].to_int(), encodedList)
+    encodedList.push(utf8Array[i].to_int())
   }
-  return encodedList.reverse().to_array()
+  return encodedList
 }
