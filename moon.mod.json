@@ -1,6 +1,6 @@
 {
   "name": "oboard/mooncrypto",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "deps": {},
   "readme": "README.md",
   "repository": "https://github.com/oboard/mooncrypto",
@@ -9,7 +9,8 @@
     "crypto",
     "加密",
     "md5",
-    "sha"
+    "sha",
+    "base64"
   ],
   "description": "MoonBit Crypto Library"
 }

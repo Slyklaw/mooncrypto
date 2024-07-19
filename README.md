@@ -28,6 +28,14 @@ println(@mooncrypto.sha256("Hello, World!"))
 println(@mooncrypto.core_sha256(bytes))
 ```
 
+### base64
+
+```moonbit
+println(@mooncrypto.base64_encode("Hello, World!"))
+
+println(@mooncrypto.base64_decode("SGVsbG8sIFdvcmxkIQ=="))
+```
+
 ## Algorithms
 
 - [x] MD5
@@ -37,3 +45,4 @@ println(@mooncrypto.core_sha256(bytes))
 - [ ] RSA
 - [ ] AES
 - [ ] ECC
+- [x] base64
