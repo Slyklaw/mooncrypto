@@ -3,13 +3,12 @@ pub enum HashType {
   SHA1
   SHA256
   SHA512
-}
+} derive(Show, Debug, Eq)
 
 pub struct Hash {
   data : Array[Int]
   hash_type : HashType
-}
-
+} derive(Debug, Eq)
 
 pub fn hexChar(byte : Int) -> String {
   let hex_tab = "0123456789abcdef"
@@ -31,4 +30,8 @@ pub fn Hash::to_string(self : Hash) -> String {
     SHA256 => hex_array(self.data)
     SHA512 => hex_array(self.data)
   }
+}
+
+pub fn Hash::output(self : Hash, logger : Logger) -> Unit {
+  logger.write_string(self.to_string());
 }
